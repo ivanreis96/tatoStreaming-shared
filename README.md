@@ -4,25 +4,25 @@ Pacote compartilhado do ecossistema Tato Streaming.
 
 ## Contexto do Projeto
 
-Este repositorio concentra contratos comuns entre aplicacoes, como:
+Este repositório concentra contratos comuns entre aplicações, como:
 
-- schemas de validacao com Zod
+- schemas de validação com Zod
 - tipos TypeScript derivados desses schemas
-- modelos de dominio compartilhados (auth, user, media)
+- modelos de domínio compartilhados (auth, user, media)
 
 No workspace maior, este pacote se relaciona com:
 
-- `../front/tatoStreaming-front`: pode reutilizar tipos/schemas para manter consistencia de payloads.
-- `../back/tatoStreaming-back`: pode reutilizar os mesmos contratos para validacao e tipagem na API.
+- `../front/tatoStreaming-front`: pode reutilizar tipos/schemas para manter consistência de payloads.
+- `../back/tatoStreaming-back`: pode reutilizar os mesmos contratos para validação e tipagem na API.
 
-A ideia principal e reduzir duplicacao e evitar divergencia de contrato entre front e back.
+A ideia principal e reduzir duplicação e evitar divergência de contrato entre front e back.
 
 ## Estrutura Atual
 
-- `src/auth.ts`: contratos de autenticacao.
-- `src/user.ts`: contrato de perfil de usuario.
-- `src/media.ts`: contratos de midia.
-- `src/index.ts`: exporta os modulos publicos do pacote.
+- `src/auth.ts`: contratos de autenticação.
+- `src/user.ts`: contrato de perfil de usuário.
+- `src/media.ts`: contratos de mídia.
+- `src/index.ts`: exporta os módulos públicos do pacote.
 
 ## Stack
 
@@ -36,7 +36,7 @@ A ideia principal e reduzir duplicacao e evitar divergencia de contrato entre fr
 
 ## Setup Passo a Passo
 
-### 1) Instalar dependencias
+### 1) Instalar dependências
 
 No terminal, a partir da pasta `shared`:
 
@@ -53,7 +53,7 @@ npm run build
 Isso gera `dist/` com:
 
 - JavaScript compilado (`main`)
-- declaracoes de tipos (`types`)
+- declarações de tipos (`types`)
 
 ### 3) Limpar artefatos de build (opcional)
 
@@ -63,22 +63,22 @@ npm run clean
 
 ## Como este pacote e usado pelos outros projetos
 
-Tanto front quanto back declaram dependencia local para este pacote via `file:../shared`.
+Tanto front quanto back declaram dependência local para este pacote via `file:../shared`.
 
 Fluxo recomendado no desenvolvimento local:
 
-1. atualizar codigo em `shared/src`
+1. atualizar código em `shared/src`
 2. executar `npm run build` em `shared`
 3. rodar/reiniciar front e back para consumir os contratos atualizados
 
-## Publicacao em repositorio proprio (proximo passo)
+## Publicação em repositório próprio (próximo passo)
 
-Ao separar este modulo em um repositorio dedicado, uma estrategia simples e:
+Ao separar este módulo em um repositório dedicado, uma estratégia simples é:
 
 1. manter o nome do pacote como `@tato-streaming/shared`
 2. remover `"private": true` quando for publicar em registry
 3. versionar com semver (ex.: `1.0.0`, `1.1.0`)
-4. publicar `dist/` como artefato de distribuicao
-5. atualizar front/back para consumir versao publicada em vez de `file:../shared`
+4. publicar `dist/` como artefato de distribuição
+5. atualizar front/back para consumir versão publicada em vez de `file:../shared`
 
-Com isso, o shared vira a fonte unica de verdade para os contratos do ecossistema.
+Com isso, o shared vira a fonte única de verdade para os contratos do ecossistema.
