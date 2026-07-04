@@ -6,24 +6,24 @@ const passwordMessage =
 
 export const registerSchema = z.object({
   displayName: z
-    .string({ message: 'Nome de exibicao e obrigatorio.' })
-    .min(2, 'Nome de exibicao deve ter no minimo 2 caracteres.'),
-  email: z.string({ message: 'E-mail e obrigatorio.' }).email('E-mail invalido.'),
+    .string({ message: 'Nome de exibição e obrigátorio.' })
+    .min(2, 'Nome de exibição deve ter no mínimo 2 caracteres.'),
+  email: z.string({ message: 'E-mail e obrigatório.' }).email('E-mail inválido.'),
   password: z
-    .string({ message: 'Senha e obrigatoria.' })
+    .string({ message: 'Senha e obrigatória.' })
     .min(8, passwordMessage)
     .regex(/\d/, passwordMessage)
     .regex(/[^A-Za-z0-9]/, passwordMessage),
-  avatarUrl: z.string().url('Avatar invalido.').optional(),
+  avatarUrl: z.string().url('Avatar inválido.').optional(),
 });
 
 export const loginSchema = z.object({
-  email: z.string({ message: 'E-mail e obrigatorio.' }).email('E-mail invalido.'),
-  password: z.string({ message: 'Senha e obrigatoria.' }).min(1, 'Senha e obrigatoria.'),
+  email: z.string({ message: 'E-mail e obrigatório.' }).email('E-mail inválido.'),
+  password: z.string({ message: 'Senha e obrigatória.' }).min(1, 'Senha e obrigatória.'),
 });
 
 export const refreshTokenSchema = z.object({
-  refreshToken: z.string().min(1, 'Refresh token e obrigatorio.'),
+  refreshToken: z.string().min(1, 'Refresh token e obrigatório.'),
 });
 
 export type RegisterDto = z.infer<typeof registerSchema>;
