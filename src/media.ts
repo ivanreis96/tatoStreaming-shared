@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 export const mediaKindSchema = z.enum(['movie', 'series']);
+export const mediaSituacaoSchema = z.enum(['lancado', 'producao', 'encerrada']);
 
 export const mediaSchema = z.object({
   id: z.string().min(1, 'ID da mídia é obrigatório.'),
@@ -15,7 +16,7 @@ export const mediaSchema = z.object({
   rating: z.coerce.number().min(0, 'Rating deve ser no mínimo 0.').max(10, 'Rating deve ser no máximo 10.'),
   lancamento: z.string().min(1, 'Lançamento é obrigatório.'),
   duracao: z.string().min(1, 'Duração é obrigatória.'),
-  situacao: z.string().min(1, 'Situação é obrigatória.'),
+  situacao: mediaSituacaoSchema,
   idioma: z.string().min(1, 'Idioma é obrigatório.'),
   orcamento: z.string().min(1, 'Orçamento é obrigatório.'),
   receita: z.string().min(1, 'Receita é obrigatória.'),
@@ -37,6 +38,7 @@ export const mediaIdParamSchema = z.object({
 });
 
 export type MediaKind = z.infer<typeof mediaKindSchema>;
+export type MediaSituacao = z.infer<typeof mediaSituacaoSchema>;
 export type Media = z.infer<typeof mediaSchema>;
 export type CreateMediaDto = z.infer<typeof createMediaSchema>;
 export type UpdateMediaDto = z.infer<typeof updateMediaSchema>;
